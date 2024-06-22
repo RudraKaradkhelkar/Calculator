@@ -23,92 +23,90 @@ html{
   padding-left:500px;
   padding-top:75px;
 }
-
+.button-container{
+  width:100%;
+  position:fixed;
+}
 .button{
   width:148px;
   height:85px;
   background-color:rgb(255, 255, 255);
   text-align:center;
   border: 1px solid gray;
-  position:absolute;
+  position:relative;
+  font-size:18px;
 }
 .button:hover{
   background-color: rgba(255, 255, 255, 0.539);
 }
 
 .button:nth-of-type(1) { /*0*/
-  bottom:196px;
+  top:344px;
   border-radius:0 0 0 15px;
 }
 .button:nth-of-type(11) { /*C*/
-  bottom:196px;
-  left:427px;
+  top:-526px;
+  left:298px;
 }
 .button:nth-of-type(12) { /*.*/
-  bottom:196px;
-  right:426px;
+  top:-613px;
+  left:149px;
 }
 .button:nth-of-type(2) { /*1*/
-  bottom:282px;
+  top:171px;
 } 
-.button:nth-of-type(4) { /*2*/
-  bottom:282px;
-  left:427px;
+.button:nth-of-type(4) { /*3*/
+  top:-3px;
+  left:298px;
 }
-.button:nth-of-type(3) { /*3*/
-  bottom:282px;
-  right:426px;
+.button:nth-of-type(3) { /*2*/
+  top:84px;
+  left:149px;
 }
 .button:nth-of-type(5) { /*4*/
-  bottom:368px;
+  bottom:176px;
 }
-.button:nth-of-type(7) { /*5*/
-  bottom:368px;
-  left:427px;
+.button:nth-of-type(7) { /*6*/
+  bottom:350px;
+  left:298px;
 }
-.button:nth-of-type(6) { /*6*/
-  right:426px;
-  bottom:368px;
+.button:nth-of-type(6) { /*5*/
+  left:149px;
+  bottom:263px;
 }
-
 .button:nth-of-type(8) { /*7*/
-  bottom:454px;
+  bottom:523px;
 }
-.button:nth-of-type(10) { /*8*/
-  bottom:454px;
-  left:427px;
+.button:nth-of-type(10) { /*9*/
+  bottom:697px;
+  left:298px;
 }
-.button:nth-of-type(9) { /*9*/
-  bottom:454px;
-  right:426px;
+.button:nth-of-type(9) { /*8*/
+  bottom:610px;
+  left:149px;
 }
 .button:nth-of-type(13) { /*+*/
-  bottom:540px;
+  bottom:1044px;
 }
-.button:nth-of-type(15) { /*-*/
-  bottom:540px;
-  left:427px;
+.button:nth-of-type(15) { /*X*/
+  bottom:1218px;
+  left:298px;
 }
-
-
-.button:nth-of-type(14) { /*X*/
-  bottom:540px;
-  right:426px;
+.button:nth-of-type(14) { /*-*/
+  bottom:1131px;
+  left:149px;
 }
-
 .button:nth-of-type(16) { /*/*/
-  bottom:540px;
-  right:128px;
+  bottom:1305px;
+  left:447px;
 }
-
 .button:last-of-type { /*=*/
-  bottom:196px;
-  right:128px;
+  bottom:1306px;
+  left:447px;
   height:343px;
   border-radius:0 0 15px 0;
   background:linear-gradient(0deg, salmon, rgb(248, 169, 160));
 } 
-
 .button:last-of-type:hover{
   background:linear-gradient(0deg, rgb(244, 102, 86), rgb(247, 149, 138));
 }
