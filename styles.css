@@ -108,6 +108,7 @@ html{
   border-radius:0 0 15px 0;
   background:linear-gradient(0deg, salmon, rgb(248, 169, 160));
 } 
+
 .button:last-of-type:hover{
   background:linear-gradient(0deg, rgb(244, 102, 86), rgb(247, 149, 138));
 }
