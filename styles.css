@@ -87,18 +87,22 @@ html{
 }
 .button:nth-of-type(13) { /*+*/
   bottom:1044px;
+  background-color: #d4cecd;
 }
 .button:nth-of-type(15) { /*X*/
   bottom:1218px;
   left:298px;
+  background-color: #d4cecd;
 }
 .button:nth-of-type(14) { /*-*/
   bottom:1131px;
   left:149px;
+  background-color: #d4cecd;
 }
 .button:nth-of-type(16) { /*/*/
   bottom:1305px;
   left:447px;
+  background-color: #d4cecd;
 }
 .button:last-of-type { /*=*/
   bottom:1306px;
