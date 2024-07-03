@@ -25,7 +25,7 @@ html{
   border-radius: 15px 15px 0 0;
 }
 
-#container-text{
+#calculator-window > span{
   display:block;
   height:100%;
   color:white;
@@ -49,12 +49,20 @@ button{
   text-align:center;
   border: 1px solid gray;
   font-size:2em;
-  transition: background-color, background 0.7s ease-in-out 0ms;
+  
   /* line-height:2px; */
 }
 button:hover{
-  background-color: #8f8e8d;
+  transition: background-color, background 0.7s ease-in-out 0ms;
+  background-color: #b7b4b1;
   cursor: pointer;
+}
+
+button:active{
+  transition: background-color, background 0.1s ease-in-out 0ms;
+  //background-color:rgba(88, 87, 87, 0.375);
+  background-color:rgba(59, 59, 59, 0.678);
+
 }
 
 button:nth-of-type(1) { /*0*/
@@ -106,44 +114,70 @@ button:nth-of-type(9) { /*8*/
   grid-column:2 / 3;
   grid-row: 2/2;
 }
+
 button:nth-of-type(13) { /*+*/
   grid-column:1 / 2;
   grid-row: 1/1;
   background-color: #d4cecd;
 }
 button:nth-of-type(13):hover{
+  transition: background-color, background 0.7s ease-in-out 0ms;
   background:#8f8e8d;
 }
+button:nth-of-type(13):active{
+  transition: background-color, background 0.1s ease-in-out 0ms;
+  background-color:rgba(59, 59, 59, 0.678);
+}
+
 button:nth-of-type(15) { /*X*/
   grid-column:3 / 4;
   grid-row: 1/1;
   background-color: #d4cecd;
 }
 button:nth-of-type(15):hover{
+  transition: background-color, background 0.7s ease-in-out 0ms;
   background:#8f8e8d;
 }
+button:nth-of-type(15):active{
+  transition: background-color, background 0.1s ease-in-out 0ms;
+  background-color:rgba(59, 59, 59, 0.678);
+}
+
 button:nth-of-type(14) { /*-*/
   grid-column:2 / 3;
   grid-row: 1/1;
   background-color: #d4cecd;
 }
 button:nth-of-type(14):hover{
+  transition: background-color, background 0.7s ease-in-out 0ms;
   background:#8f8e8d;
 }
+button:nth-of-type(14):active{
+  transition: background-color, background 0.1s ease-in-out 0ms;
+  background-color:rgba(59, 59, 59, 0.678);
+}
+
 button:nth-of-type(16) { /*/*/
   grid-column:4 / 4;
   grid-row: 1/1;
   background-color: #d4cecd;
 }
 button:nth-of-type(16):hover{
+  transition: background-color, background 0.7s ease-in-out 0ms;
   background:#8f8e8d;
 }
-button:last-of-type { /*=*/
+button:nth-of-type(16):active{
+  transition: background-color, background 0.1s ease-in-out 0ms;
+  background-color:rgba(59, 59, 59, 0.678);
+}
+
+button:nth-of-type(17) { /*=*/
   grid-column:4 / 5;
   grid-row: 2/ span end;
   border-radius:0 0 15px 0;
   background: linear-gradient(0deg, salmon, rgb(248, 169, 160));
 } 
-button:last-of-type:hover{
+button:nth-of-type(17):hover{
+  transition: background-color, background 0.7s ease-in-out 0ms;
   background: linear-gradient(0deg, rgb(247, 80, 61), rgb(243, 134, 122));
 }
