@@ -10,7 +10,7 @@
   <body>
     <h1 id="title">Rudra's Calculator</h1>
     <div class="container">
-      <div id="calculator-window"><span id="container-text">Text</span></div>
+      <div id="calculator-window"><span>Text</span></div>
       <div class="button-container">
         <button>0</button>
         <button>1</button>
@@ -22,15 +22,16 @@
         <button>7</button>
         <button>8</button>
         <button>9</button>
-        <button>C</button>
-        <button>.</button>
-        <button>+</button>
-        <button>-</button>
-        <button>×</button>
-        <button>÷</button>
-        <button>=</button>
+        <button data-action="clear">C</button>
+        <button data-action="decimal">.</button>
+        <button data-action="add">+</button>
+        <button data-action="subtract">-</button>
+        <button data-action="multiply">×</button>
+        <button data-action="divide">÷</button>
+        <button data-action="equal">=</button>
       </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="script.js"></script>
   </body>
 </html>
