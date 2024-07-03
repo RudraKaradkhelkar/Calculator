@@ -14,6 +14,5 @@ $( document ).ready(function() {
            $(calcText).html($(this).html()); // For testing if calculator window works
         }
     });
-
-
+    
 });
