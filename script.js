@@ -3,6 +3,7 @@ $( document ).ready(function() {
     var number1;
     var number2;
     var action;
+    let equalCount=0;
     let decimalCount=0;
     let numberCount=0;
     var firstNumber = true;
@@ -12,8 +13,16 @@ $( document ).ready(function() {
     console.log( "ready!" );
     
     $(":button").on("click", function(e){
+        // if($(this).attr("data-action")!==undefined)){
+        //     (calcText).html($(this).html());
+        // }
+         // console.log($(this).attr("data-action"));
+            // $(calcText).html($(this).attr("data-action")); // For testing if calculator window works
+        // }  else{
+        //console.log($(this).html());
+
         if(!($(this).attr("data-action")!==undefined)){
-            if(firstNumber && numberCount===0){
+            if(firstNumber && numberCount===0 && (decimalCount===0||equalCount===1)){
                 reset();
                 firstNumber = false;
             }
@@ -68,7 +77,9 @@ $( document ).ready(function() {
                 console.log(action);
                 $(calcText).html(calculate(number1,action,number2));
                 firstNumber=true;
+                equalCount=1;
                 numberCount=0;
+                decimalCount=1;
                 number1=calculate(number1,action,number2);
             }
         }
@@ -117,5 +128,6 @@ $( document ).ready(function() {
         action="";
         decimalCount=0;
         numberCount=0;
+        equalCount=0;
     }
 });
