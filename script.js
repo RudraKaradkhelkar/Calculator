@@ -9,6 +9,7 @@ $( document ).ready(function() {
     var firstNumber=true;
     var negated=false;
     var tempNum;
+    var digitCount=0;
     
     $(calcText).html("0");
 
@@ -16,26 +17,31 @@ $( document ).ready(function() {
     
     $(":button").on("click", function(e){
 
-        if(!($(this).attr("data-action")!==undefined)){
+        if(!($(this).attr("data-action")!==undefined)){//&&digitCount<10){
             if(firstNumber && numberCount===0 && (decimalCount===0||equalCount===1)){
                 reset();
                 firstNumber = false;
             }
            $(calcText).append($(this).html());
-
+           digitCount++;
+           
         } else if($(this).attr("data-action")==="negate") {
            negated=!negated;
            console.log("negated");
            if(negated && numberCount===0){
                $(calcText).prepend("-");
+               digitCount++;
            } else if(negated && numberCount===1){
                tempNum=$(calcText).html().slice(number1.length+3);
                $(calcText).html($(calcText).html().slice(0,number1.length+3)+"-"+tempNum);
+               digitCount++;
            } else if(!negated && numberCount===0){
                $(calcText).html($(calcText).html().slice(1));
+               digitCount--;
            } else{
                tempNum=$(calcText).html().slice(number1.length+4);
                $(calcText).html($(calcText).html().slice(0,number1.length+3)+tempNum);
+               digitCount--;
            }
             
         } else if($(this).attr("data-action")==="decimal" && decimalCount<1){
@@ -54,24 +60,28 @@ $( document ).ready(function() {
                     action="add";
                     numberCount++;
                     decimalCount = 0;
+                    digitCount=0;
                     break;
                 case "subtract":
                     $(calcText).append(" - ");
                     action="subtract";
                     numberCount++;
                     decimalCount = 0;
+                    digitCount=0;
                     break;
                 case "multiply":
                     $(calcText).append(" × ");
                     action="multiply";
                     numberCount++;
                     decimalCount = 0;
+                    digitCount=0;
                     break;
                 case "divide":
                     $(calcText).append(" ÷ ");
                     action="divide";
                     numberCount++;
                     decimalCount = 0;
+                    digitCount=0;
                     break;
                 default:
                     break;
@@ -82,23 +92,29 @@ $( document ).ready(function() {
 
             if($(this).attr("data-action")==="equal" &&  checkLength !== "" && numberCount===1){
                 number2 = checkLength;
-                console.log(number1);
-                console.log(number2);
-                console.log(action);
-                $(calcText).html(calculate(number1,action,number2));
+                // console.log(number1);
+                // console.log(number2);
+                // console.log(action);
+                let answer = calculate(number1,action,number2);
+                $(calcText).html(answer);
                 firstNumber=true;
                 equalCount=1;
                 numberCount=0;
                 decimalCount=1;
                 number1=calculate(number1,action,number2);
-                negated=false;
+                if(answer<0){
+                    negated=true
+                } else{
+                    negated=false;
+                }
+                digitCount=0;
             }
         }
     });
 
     function calculate(num1,action,num2){
         var result;
-
+        let zeroError=false;
         switch(action){
             case "add":
                 result = parseFloat(num1) + parseFloat(num2);
@@ -111,10 +127,19 @@ $( document ).ready(function() {
                 break;
             case "divide":
                 result = parseFloat(num1) / parseFloat(num2);
+                if(result="Infinity"){
+                    zeroError=true;
+                    result="ERROR: Division by Zero";
+                }
                 break;
             default:
                 console.log("Error: "+action+" is an undefined action");
         }
+
+        if(typeof(result)!="number"&&!zeroError){
+            result="ERROR";
+        }
+       
         return result;
     }
     // console.log(calculate(3,"multiply",2));
@@ -132,6 +157,7 @@ $( document ).ready(function() {
         numberCount=0;
         firstNumber=true;
         negated=false;
+        digitCount=0;
     }
 
     function reset(){
@@ -142,5 +168,6 @@ $( document ).ready(function() {
         numberCount=0;
         equalCount=0;
         negated=false;
+        digitCount=0;
     }
 });
