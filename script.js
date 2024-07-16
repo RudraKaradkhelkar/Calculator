@@ -6,20 +6,15 @@ $( document ).ready(function() {
     let equalCount=0;
     let decimalCount=0;
     let numberCount=0;
-    var firstNumber = true;
+    var firstNumber=true;
+    var negated=false;
+    var tempNum;
     
     $(calcText).html("0");
 
     console.log( "ready!" );
     
     $(":button").on("click", function(e){
-        // if($(this).attr("data-action")!==undefined)){
-        //     (calcText).html($(this).html());
-        // }
-         // console.log($(this).attr("data-action"));
-            // $(calcText).html($(this).attr("data-action")); // For testing if calculator window works
-        // }  else{
-        //console.log($(this).html());
 
         if(!($(this).attr("data-action")!==undefined)){
             if(firstNumber && numberCount===0 && (decimalCount===0||equalCount===1)){
@@ -28,6 +23,21 @@ $( document ).ready(function() {
             }
            $(calcText).append($(this).html());
 
+        } else if($(this).attr("data-action")==="negate") {
+           negated=!negated;
+           console.log("negated");
+           if(negated && numberCount===0){
+               $(calcText).prepend("-");
+           } else if(negated && numberCount===1){
+               tempNum=$(calcText).html().slice(number1.length+3);
+               $(calcText).html($(calcText).html().slice(0,number1.length+3)+"-"+tempNum);
+           } else if(!negated && numberCount===0){
+               $(calcText).html($(calcText).html().slice(1));
+           } else{
+               tempNum=$(calcText).html().slice(number1.length+4);
+               $(calcText).html($(calcText).html().slice(0,number1.length+3)+tempNum);
+           }
+            
         } else if($(this).attr("data-action")==="decimal" && decimalCount<1){
             $(calcText).append($(this).html());
             decimalCount++;
@@ -37,7 +47,7 @@ $( document ).ready(function() {
             
         } else if(numberCount!==1 && $(calcText).html()!==""){
             number1 = $(calcText).html();
-            
+            negated=false;
             switch($(this).attr("data-action")){
                 case "add":
                     $(calcText).append(" + ");
@@ -81,6 +91,7 @@ $( document ).ready(function() {
                 numberCount=0;
                 decimalCount=1;
                 number1=calculate(number1,action,number2);
+                negated=false;
             }
         }
     });
@@ -119,7 +130,8 @@ $( document ).ready(function() {
         action="";
         decimalCount=0;
         numberCount=0;
-        firstNumber = true;
+        firstNumber=true;
+        negated=false;
     }
 
     function reset(){
@@ -129,5 +141,6 @@ $( document ).ready(function() {
         decimalCount=0;
         numberCount=0;
         equalCount=0;
+        negated=false;
     }
 });
