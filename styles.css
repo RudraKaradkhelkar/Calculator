@@ -60,7 +60,6 @@ button:hover{
 
 button:active{
   transition: background-color, background 0.1s ease-in-out 0ms;
-  //background-color:rgba(88, 87, 87, 0.375);
   background-color:rgba(59, 59, 59, 0.678);
 
 }
@@ -173,11 +172,16 @@ button:nth-of-type(16):active{
 
 button:nth-of-type(17) { /*=*/
   grid-column:4 / 5;
-  grid-row: 2/ span end;
-  border-radius:0 0 15px 0;
+  grid-row: 2/ 5;
   background: linear-gradient(0deg, salmon, rgb(248, 169, 160));
 } 
 button:nth-of-type(17):hover{
   transition: background-color, background 0.7s ease-in-out 0ms;
   background: linear-gradient(0deg, rgb(247, 80, 61), rgb(243, 134, 122));
+}
+
+button:nth-of-type(18) {
+  grid-column:4/5;
+  grid-row:5/5;
+  border-radius:0 0 15px 0;
 }
