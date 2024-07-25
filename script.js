@@ -9,7 +9,9 @@ $( document ).ready(function() {
     var firstNumber=true;
     var negated=false;
     var tempNum;
-    var digitCount=0;
+    var tempNum2;
+    let digitCount=0;
+    var error=false;
     
     $(calcText).html("0");
 
@@ -21,21 +23,30 @@ $( document ).ready(function() {
             if(firstNumber && numberCount===0 && (decimalCount===0||equalCount===1)){
                 reset();
                 firstNumber = false;
+                error=false;
             }
            $(calcText).append($(this).html());
-           digitCount++;
            
-        } else if($(this).attr("data-action")==="negate") {
+        } else if($(this).attr("data-action")==="negate"&&!error) {
            negated=!negated;
-           console.log("negated");
-           if(negated && numberCount===0){
+           //console.log(digitCount);
+           //console.log("negated");
+           console.log(digitCount);
+            console.log(negated);
+            console.log(numberCount+"\n");
+           
+           if(negated && numberCount===0 && $(calcText).html().slice(0,1)!=="-"){
                $(calcText).prepend("-");
                digitCount++;
+               console.log(digitCount);
+               console.log(negated);
+               console.log(numberCount+"\n");
+
            } else if(negated && numberCount===1){
                tempNum=$(calcText).html().slice(number1.length+3);
                $(calcText).html($(calcText).html().slice(0,number1.length+3)+"-"+tempNum);
                digitCount++;
-           } else if(!negated && numberCount===0){
+           } else if(!negated && numberCount===0 && $(calcText).html().slice(0,1)==="-"){
                $(calcText).html($(calcText).html().slice(1));
                digitCount--;
            } else{
@@ -51,7 +62,7 @@ $( document ).ready(function() {
         } else if($(this).attr("data-action")==="clear"){
             fullReset();
             
-        } else if(numberCount!==1 && $(calcText).html()!==""){
+        } else if(numberCount!==1 && $(calcText).html()!==""&&!error){
             number1 = $(calcText).html();
             negated=false;
             switch($(this).attr("data-action")){
@@ -89,26 +100,33 @@ $( document ).ready(function() {
             
          } else{
             let checkLength=$(calcText).html().slice(number1.length+3);
-
+            
             if($(this).attr("data-action")==="equal" &&  checkLength !== "" && numberCount===1){
                 number2 = checkLength;
+                
                 // console.log(number1);
                 // console.log(number2);
                 // console.log(action);
                 let answer = calculate(number1,action,number2);
                 $(calcText).html(answer);
                 firstNumber=true;
-                equalCount=1;
+                decimalCount=1;                    
                 numberCount=0;
-                decimalCount=1;
-                number1=calculate(number1,action,number2);
-                if(answer<0){
-                    negated=true
-                } else{
-                    negated=false;
+                if(answer=="ERROR: Division by Zero"){
+                    error=true;                    
                 }
-                digitCount=0;
+                equalCount=1;
+                if(answer!="ERROR: Division by Zero"){
+                    number1=calculate(number1,action,number2);
+                    if(answer<0){
+                        negated=true
+                    } else{
+                        negated=false;
+                    }
+                    digitCount=0;
+                }
             }
+            console.log("bruh");
         }
     });
 
@@ -127,17 +145,14 @@ $( document ).ready(function() {
                 break;
             case "divide":
                 result = parseFloat(num1) / parseFloat(num2);
-                if(result="Infinity"){
-                    zeroError=true;
-                    result="ERROR: Division by Zero";
+                console.log(result);
+                if(result=="Infinity"||result=="-Infinity"||(num1==0&&num2==0)){
+                     zeroError=true;
+                     result="ERROR: Division by Zero";
                 }
                 break;
             default:
                 console.log("Error: "+action+" is an undefined action");
-        }
-
-        if(typeof(result)!="number"&&!zeroError){
-            result="ERROR";
         }
        
         return result;
@@ -158,6 +173,7 @@ $( document ).ready(function() {
         firstNumber=true;
         negated=false;
         digitCount=0;
+        error=false;
     }
 
     function reset(){
